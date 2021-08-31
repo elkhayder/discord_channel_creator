@@ -1,0 +1,17 @@
+{
+   "name": "discord_channel_creator",
+   "version": "1.0.0",
+   "main": "index.js",
+   "license": "MIT",
+   "scripts": {
+      "start": "node prod/index.js",
+      "watch": "tsc -p tsconfig.json -w",
+      "test": "mocha -r ts-node/register \"tests/**/*.spec.ts\""
+   },
+   "dependencies": {
+      "@types/node": "^16.7.9",
+      "discord.js": "^13.1.0",
+      "dotenv": "^10.0.0",
+      "typescript": "^4.4.2"
+   }
+}
