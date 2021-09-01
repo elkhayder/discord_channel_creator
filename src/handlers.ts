@@ -7,13 +7,7 @@ export const voiceStateUpdateHandler = async (
    oldState: Discord.VoiceState,
    newState: Discord.VoiceState
 ) => {
-   if (
-      !newState.member ||
-      !oldState.member ||
-      newState.member.user.bot ||
-      !newState.channel
-   )
-      return;
+   if (newState.member?.user.bot || oldState.member?.user.bot) return;
 
    // Handle Deleting Channel if no used is there anymore
    if (oldState.channel && createdChannels.includes(oldState.channel.id)) {
@@ -21,15 +15,16 @@ export const voiceStateUpdateHandler = async (
       //  return;
    }
 
-   if (newState.channelId !== CHANNEL_ID && oldState.channelId !== CHANNEL_ID)
-      return;
+   if (newState.channelId !== CHANNEL_ID) return;
 
-   const newChannel = await newState.guild.channels.create(
-      newState.member.displayName,
-      { type: "GUILD_VOICE", parent: PARENT_ID }
-   );
+   if (newState.member) {
+      const newChannel = await newState.guild.channels.create(
+         newState.member.displayName,
+         { type: "GUILD_VOICE", parent: PARENT_ID }
+      );
 
-   createdChannels.push(newChannel.id);
+      createdChannels.push(newChannel.id);
 
-   newState.member.voice.setChannel(newChannel);
+      newState.member.voice.setChannel(newChannel);
+   }
 };
