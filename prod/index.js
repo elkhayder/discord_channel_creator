@@ -25,7 +25,6 @@ require("dotenv").config();
 const client = new discord_js_1.default.Client({
     intents: [discord_js_1.Intents.FLAGS.GUILDS, discord_js_1.Intents.FLAGS.GUILD_VOICE_STATES],
 });
-const createdChannels = [];
 client.once("ready", () => {
     console.log("Ready");
 });

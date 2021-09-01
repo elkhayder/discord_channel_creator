@@ -21,7 +21,8 @@ export const voiceStateUpdateHandler = async (
       //  return;
    }
 
-   if (newState.channelId !== CHANNEL_ID) return;
+   if (newState.channelId !== CHANNEL_ID && oldState.channelId !== CHANNEL_ID)
+      return;
 
    const newChannel = await newState.guild.channels.create(
       newState.member.displayName,

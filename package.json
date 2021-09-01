@@ -4,7 +4,8 @@
    "main": "index.js",
    "license": "MIT",
    "scripts": {
-      "start": "node prod/index.js",
+      "start": "npm run build && node prod/index.js",
+      "build": "tsc -p tsconfig.json",
       "watch": "tsc -p tsconfig.json -w",
       "test": "mocha -r ts-node/register \"tests/**/*.spec.ts\""
    },
