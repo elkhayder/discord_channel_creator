@@ -6,7 +6,6 @@ const client = new Discord.Client({
    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_VOICE_STATES],
 });
 
-
 client.once("ready", () => {
    console.log("Ready");
 });
